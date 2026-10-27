@@ -12,20 +12,30 @@
             if(isset($_GET['scelta'])){
                 switch($_GET['scelta']){
                     case "calcola":{
+
                         $a = $_GET['inputA'];
 
+                        echo '<div style="display: flex; flex-wrap: wrap; gap: 20px;">';
                         for($i = 0; $i <= $a; $i++){
-                            echo('<table>')
-                            for($j = i; $j <= $a; $j++){
+
+                            echo '<table border="1" style="margin-bottom: 10px; ">';
+                            echo '<thead>';
+                            echo '<tr><th colspan="2">Tabellina del ' . $i . '</th></tr>';
+                            echo '</thead>';
+                            echo '<tbody>';
+                            for($j = 0; $j <= 10; $j++){
                                 $tab = $i * $j;
-                                echo('<table>
-                                <tr>
-                                    <th>'.$tab'</th>
-                                </tr>');
+                                echo '<tr>';
+                                echo '<td>' . $i . ' x ' . $j . '</td>';
+                                echo '<td>' . $tab . '</td>';
+                                echo '</tr>';
                             }
-                            echo('</table>');
+                            echo '</tbody>';
+                            echo '</table>';
+
                         }
-                        
+                        echo '</div>';
+
                         break;
                     }
                 }
@@ -33,13 +43,13 @@
             else{
                 echo('<div class="container-fluid">
                     <h1>Form Inserimento Dati</h1>
-                    <form action="e04.php" method="get">
+                    <form action="e05.php" method="get">
                         <div class="mb-3">
-                            <label for="inputA" class="form-label">Inserisci valore del raggio</label>
-                            <input class="form-control form-control-lg" type="text" name="inputA" id="inputA" placeholder="Valore raggio" aria-label="default input example">
+                            <label for="inputA" class="form-label">Inserisci valore del numero</label>
+                            <input class="form-control form-control-lg" type="text" name="inputA" id="inputA" placeholder="inserisci numero" aria-label="default input example">
                         </div>
                         <input type="hidden" name="scelta" id="scelta" value="calcola">
-                        <button class="btn btn-success" type="submit">Trova A</button>
+                        <button class="btn btn-success" type="submit">Guarda tabellina</button>
                     </form>            
                 </div>');
             }
