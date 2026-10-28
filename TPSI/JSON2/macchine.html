@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prova rubrica json</title>
+    </head>
+    <body>
+        <button id="btnCaricaArchivio">Carica Intera Lista</button>
+        <button id="btnCaricaUniproprietario">Carica Utenti Maschi</button>
+        <br /><br />
+        Et&agrave; minima: <input type="text" id="anniRichiesti">
+        <button id="btnEtaMinima">Et&agrave; maggiore o uguale di...</button>
+        <br /><br />
+        <div id="viewBox" style="border: solid 1px rgb(200,0,0);">Seleziona una opzione</div>
+        
+
+        <form action="/cerca" method="GET">
+        <label for="barra-ricerca">Cerca per provincia</label>
+        <input type="search" id="ricercaProvincia" name="q" placeholder="Scrivi qui cosa cercare...">
+        <button type="submit" id="btnCaricaProvincia">Cerca</button>
+        </form>
+
+        <form action="/cerca" method="GET">
+        <label for="barra-ricerca">Cerca per marca</label>
+        <input type="search" id="ricercaMarca" name="q" placeholder="Scrivi qui cosa cercare...">
+        <button type="submit" id="btnCaricaMarca">Cerca</button>
+        </form>
+
+        <script>
+
+            // Visualizzazione intero archivio.
+            async function visualizzazioneArchivio(){
+
+                const promise = await fetch("macchine.json");
+                const vettArchivio = await promise.json();
+                let vb = document.querySelector("#viewBox");
+
+                vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    vb.innerHTML += vettArchivio[i].Marca + " " + vettArchivio[i].Modello + " " + vettArchivio[i].Anno_Immatricolazione + " " + vettArchivio[i].Provincia + " " + vettArchivio[i].Uniproprietario + " " +  vettArchivio[i].Kilometraggio + "<br />";
+                }
+            }
+
+            // Visualizzazione autovetture uniproprietario.
+            async function caricaUniproprietario(){
+
+                const promise = await fetch("macchine.json");
+                const vettArchivio = await promise.json();
+                let vb = document.querySelector("#viewBox");
+
+                // vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    if(vettArchivio[i].Uniproprietario){
+                        vb.innerHTML += vettArchivio[i].Marca + " " + vettArchivio[i].Modello + " " + vettArchivio[i].Anno_Immatricolazione + " " + vettArchivio[i].Provincia + " " + vettArchivio[i].Uniproprietario + " " +  vettArchivio[i].Kilometraggio + "<br />";
+                    }
+                }
+            }
+
+            // Ricerca e visualizzazione autovetture secondo la Provincia.
+
+            async function cercaProvincia(){
+                const promise = await fetch("macchine.json");
+                const vettArchivio = await promise.json();
+                const provincia = document.getElementById('ricercaProvincia');
+
+                let vb = document.querySelector("#viewBox");
+
+                // vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+
+                
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    if(vettArchivio[i].Provincia == provincia){
+                        vb.innerHTML += vettArchivio[i].Provincia + "<br />";
+                    }
+                }
+
+            }
+
+            
+            async function cercaMarca(){
+                const promise = await fetch("macchine.json");
+                const vettArchivio = await promise.json();
+                const marca = document.getElementById('ricercaMarca');
+
+                let vb = document.querySelector("#viewBox");
+
+                
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    if(vettArchivio[i].Marca == marca){
+                        vb.innerHTML += vettArchivio[i].marca + "<br />";
+                    }
+                }
+
+            }
+
+
+            let btnCaricaArchivio = document.querySelector("#btnCaricaArchivio");
+            btnCaricaArchivio.addEventListener('click', visualizzazioneArchivio);
+
+            let btnCaricauniproprietario = document.querySelector("#btnCaricauniproprietario");
+            btnCaricauniproprietario.addEventListener('click', caricaUniproprietario);
+
+            let btnCaricaProvincia = document.querySelector("#btnCaricaProvincia");
+            btnCaricaProvincia.addEventListener('click', cercaProvincia);
+
+            let btnCaricaMarca = document.querySelector("#btnCaricaMarca");
+            btnCaricaMarca.addEventListener('click', cercaMarca);
+
+            
+
+        </script>
+    </body>
+</html>

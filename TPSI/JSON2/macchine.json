@@ -1,0 +1,50 @@
+[
+  {
+    "Marca": "Fiat",
+    "Modello": "Punto 1.2 8V (Chilometri Scalati Garantiti)",
+    "Anno_Immatricolazione": 2003,
+    "Provincia": "MN",
+    "Uniproprietario": true,
+    "Kilometraggio": 45000
+  },
+  {
+    "Marca": "Alfa Romeo",
+    "Modello": "147 1.9 JTD (Fumo Nero Sportivo)",
+    "Anno_Immatricolazione": 2006,
+    "Provincia": "VR",
+    "Uniproprietario": false,
+    "Kilometraggio": 380000
+  },
+  {
+    "Marca": "Audi",
+    "Modello": "A4 Avant (Targa Estera Non Tracciabile)",
+    "Anno_Immatricolazione": 2011,
+    "Provincia": "EE",
+    "Uniproprietario": false,
+    "Kilometraggio": 120000
+  },
+  {
+    "Marca": "Volkswagen",
+    "Modello": "Golf 5 2.0 TDI (Spia Motore Coperta con Nastro)",
+    "Anno_Immatricolazione": 2005,
+    "Provincia": "MO",
+    "Uniproprietario": true,
+    "Kilometraggio": 99000
+  },
+  {
+    "Marca": "BMW",
+    "Modello": "Serie 3 Coupe (Vinta a Carte nel 2018)",
+    "Anno_Immatricolazione": 2008,
+    "Provincia": "RE",
+    "Uniproprietario": false,
+    "Kilometraggio": 215000
+  },
+  {
+    "Marca": "Lancia",
+    "Modello": "Ypsilon 1.2 (Usata Solo da Vecchietta per Fare la Spesa)",
+    "Anno_Immatricolazione": 2004,
+    "Provincia": "RO",
+    "Uniproprietario": true,
+    "Kilometraggio": 32000
+  }
+]
