@@ -5,25 +5,32 @@
     </head>
     <body>
         <button id="btnCaricaArchivio">Carica Intera Lista</button>
-        <button id="btnCaricaUniproprietario">Carica Utenti Maschi</button>
+        <button id="btnCaricauniproprietario">Carica Uniproprietari</button>
         <br /><br />
+
+
+
+        <form id="formCerca" onsubmit="event.preventDefault(); cercaProvincia();">
+        <label for="ricercaProvincia">Cerca per provincia</label>
+        <input type="search" id="ricercaProvincia" name="q" placeholder="Scrivi provincia">
+        <button type="submit" id="btnCaricaProvincia">Cerca</button>
+        </form> 
+
+
+        <form id="formCerca" onsubmit="event.preventDefault(); cercaMarca();">
+        <label for="ricercaMarca">Cerca per marca</label>
+        <input type="search" id="ricercaMarca" name="q" placeholder="Scrivi marca">
+        <button type="submit" id="btnCaricaMarca">Cerca</button>
+        </form> 
+
+<!---
         Et&agrave; minima: <input type="text" id="anniRichiesti">
         <button id="btnEtaMinima">Et&agrave; maggiore o uguale di...</button>
-        <br /><br />
+        <br /><br />     -->
         <div id="viewBox" style="border: solid 1px rgb(200,0,0);">Seleziona una opzione</div>
         
 
-        <form action="/cerca" method="GET">
-        <label for="barra-ricerca">Cerca per provincia</label>
-        <input type="search" id="ricercaProvincia" name="q" placeholder="Scrivi qui cosa cercare...">
-        <button type="submit" id="btnCaricaProvincia">Cerca</button>
-        </form>
 
-        <form action="/cerca" method="GET">
-        <label for="barra-ricerca">Cerca per marca</label>
-        <input type="search" id="ricercaMarca" name="q" placeholder="Scrivi qui cosa cercare...">
-        <button type="submit" id="btnCaricaMarca">Cerca</button>
-        </form>
 
         <script>
 
@@ -48,7 +55,7 @@
                 const vettArchivio = await promise.json();
                 let vb = document.querySelector("#viewBox");
 
-                // vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+                vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
 
                 for(let i=0; i < vettArchivio.length; i++){
                     if(vettArchivio[i].Uniproprietario){
@@ -62,39 +69,42 @@
             async function cercaProvincia(){
                 const promise = await fetch("macchine.json");
                 const vettArchivio = await promise.json();
-                const provincia = document.getElementById('ricercaProvincia');
-
+                // const provincia = document.getElementById('ricercaProvincia');
+                let provincia = document.getElementById("ricercaProvincia").value.toUpperCase().trim();
                 let vb = document.querySelector("#viewBox");
 
                 // vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
-
+                vb.innerHTML = ""; 
                 
 
                 for(let i=0; i < vettArchivio.length; i++){
-                    if(vettArchivio[i].Provincia == provincia){
-                        vb.innerHTML += vettArchivio[i].Provincia + "<br />";
+                    if(vettArchivio[i].Provincia.toUpperCase() == provincia){
+                        vb.innerHTML += vettArchivio[i].Marca + " " + vettArchivio[i].Modello + " " + vettArchivio[i].Anno_Immatricolazione + " " + vettArchivio[i].Provincia + " " + vettArchivio[i].Uniproprietario + " " +  vettArchivio[i].Kilometraggio + "<br />";
                     }
                 }
 
             }
 
             
+
             async function cercaMarca(){
                 const promise = await fetch("macchine.json");
                 const vettArchivio = await promise.json();
-                const marca = document.getElementById('ricercaMarca');
-
+                // const provincia = document.getElementById('ricercaProvincia');
+                let marca = document.getElementById("ricercaMarca").value.toUpperCase().trim();
                 let vb = document.querySelector("#viewBox");
 
+                // vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+                vb.innerHTML = ""; 
                 
 
                 for(let i=0; i < vettArchivio.length; i++){
-                    if(vettArchivio[i].Marca == marca){
-                        vb.innerHTML += vettArchivio[i].marca + "<br />";
+                    if(vettArchivio[i].Marca.toUpperCase() == marca){
+                        vb.innerHTML += vettArchivio[i].Marca + " " + vettArchivio[i].Modello + " " + vettArchivio[i].Anno_Immatricolazione + " " + vettArchivio[i].Provincia + " " + vettArchivio[i].Uniproprietario + " " +  vettArchivio[i].Kilometraggio + "<br />";
                     }
                 }
-
             }
+
 
 
             let btnCaricaArchivio = document.querySelector("#btnCaricaArchivio");
