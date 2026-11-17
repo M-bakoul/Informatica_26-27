@@ -16,6 +16,7 @@
         <button type="submit" id="btnCaricaProvincia">Cerca</button>
         </form> 
 
+        
 
         <form id="formCerca" onsubmit="event.preventDefault(); cercaMarca();">
         <label for="ricercaMarca">Cerca per marca</label>
@@ -41,8 +42,6 @@
         <button id="btnEtaMinima">Et&agrave; maggiore o uguale di...</button>
         <br /><br />     -->
         <div id="viewBox" style="border: solid 1px rgb(200,0,0);">Seleziona una opzione</div>
-        
-
 
 
         <script>
@@ -121,12 +120,8 @@
                 const promise = await fetch("macchine.json");
                 const vettArchivio = await promise.json();
                 // event.preventDefault(); // Blocca il ricaricamento della pagina
-
                 const primoDato = parseInt(document.getElementById('dato1').value);
                 const secondoDato = parseInt(document.getElementById('dato2').value);
-
-
-
 
 
                 let vb = document.querySelector("#viewBox");
