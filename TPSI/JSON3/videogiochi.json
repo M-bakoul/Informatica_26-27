@@ -1,0 +1,50 @@
+[
+  {
+    "Titolo": "The Witcher 3: Wild Hunt",
+    "Piattaforma": "PC",
+    "Anno_Uscita": 2015,
+    "Genere": "RPG",
+    "Completato": false,
+    "Ore_Giocate": 14
+  },
+  {
+    "Titolo": "FIFA 18",
+    "Piattaforma": "PS4",
+    "Anno_Uscita": 2017,
+    "Genere": "Sportivo",
+    "Completato": false,
+    "Ore_Giocate": 0
+  },
+  {
+    "Titolo": "Cyberpunk 2077",
+    "Piattaforma": "PS5",
+    "Anno_Uscita": 2020,
+    "Genere": "Action RPG",
+    "Completato": true,
+    "Ore_Giocate": 112
+  },
+  {
+    "Titolo": "Hollow Knight",
+    "Piattaforma": "Nintendo Switch",
+    "Anno_Uscita": 2017,
+    "Genere": "Metroidvania",
+    "Completato": false,
+    "Ore_Giocate": 67
+  },
+  {
+    "Titolo": "Skyrim",
+    "Piattaforma": "PC",
+    "Anno_Uscita": 2011,
+    "Genere": "RPG",
+    "Completato": false,
+    "Ore_Giocate": 430
+  },
+  {
+    "Titolo": "Super Mario Bros",
+    "Piattaforma": "PS5",
+    "Anno_Uscita": 1985,
+    "Genere": "Platform",
+    "Completato": true,
+    "Ore_Giocate": 25
+  }
+]

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista videogiochi</title>
+    </head>
+    <body>
+        <!--- 1 --> 
+        <button id="btnCaricaArchivio">Carica Intera Lista</button>
+        <!--- 2 --> 
+        <button id="btnCaricaCompletato">Carica giochi completati</button>
+        <br /><br />
+
+        <!--- 3 --> 
+        <form id="formCerca" onsubmit="event.preventDefault(); cercaGenere();">
+        <label for="ricercaGenere">Cerca per genere</label>
+        <input type="search" id="ricercaGenere" name="q" placeholder="Scrivi genere qui...">
+        <button type="submit" id="btnCaricaGenere">Cerca</button>
+        </form> 
+        
+        <!--- 4 --> 
+        <form id="formCerca" onsubmit="event.preventDefault(); cercaPiattaforma();">
+        <label for="ricercaPiattaforma">Scegli una piattaforma:</label>
+        <select id="ricercaPiattaforma" name="ricercaPiattaforma" required>
+            <option value="" disabled selected>-- Seleziona una piattaforma --</option>
+        </select>
+        <button type="submit" id="btnCaricaPiattaforma">Cerca</button>
+        </form>
+    </br>
+
+        <!--- 5 --> 
+        <form id="formCerca" onsubmit="event.preventDefault(); cercaAnno();">
+        <label for="ricercaAnno">Cerca per anno</label>
+        <input 
+            type="number" 
+            id="ricercaGenere" 
+            name="q" 
+            min="1900" 
+            step="2026" 
+            placeholder="Scrivi anno..."
+            required
+        >
+        <button type="submit" id="btnCaricaAnno">Cerca</button>
+        </form>
+    </br>
+
+    <!-- DIV -->
+    <div id="viewBox" style="border: solid 1px rgb(200,0,0);">Seleziona una opzione</div>
+
+        <script>
+
+            // Visualizzazione intero archivio.
+            async function visualizzazioneArchivio(){
+
+                const promise = await fetch("videogiochi.json");
+                const vettArchivio = await promise.json();
+                let vb = document.querySelector("#viewBox");
+
+                vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    vb.innerHTML += vettArchivio[i].Titolo + " " + vettArchivio[i].Piattaforma + " " + vettArchivio[i].Anno_Uscita + " " + vettArchivio[i].Genere + " " + vettArchivio[i].Completato + " " +  vettArchivio[i].Ore_Giocate + "<br />";
+                }
+            }
+
+            // Visualizzazione autovetture uniproprietario.
+            async function caricaCompletato(){
+
+                const promise = await fetch("videogiochi.json");
+                const vettArchivio = await promise.json();
+                let vb = document.querySelector("#viewBox");
+
+                vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    if(vettArchivio[i].Completato){
+                        vb.innerHTML += vettArchivio[i].Titolo + " " + vettArchivio[i].Piattaforma + " " + vettArchivio[i].Anno_Uscita + " " + vettArchivio[i].Genere + " " + vettArchivio[i].Completato + " " +  vettArchivio[i].Ore_Giocate + "<br />";
+                    }
+                }
+            }
+
+            // Ricerca e visualizzazione autovetture secondo la Provincia.
+
+            async function cercaGenere(){
+                const promise = await fetch("videogiochi.json");
+                const vettArchivio = await promise.json();
+
+                let genere = document.getElementById("ricercaGenere").value.toUpperCase().trim();
+                let vb = document.querySelector("#viewBox");
+
+                // vb.innerHTML = "Numero di JSON ricevuti: "+vettArchivio.length+"<br /><br />";
+                vb.innerHTML = ""; 
+                
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    if(vettArchivio[i].Genere.toUpperCase() == genere){
+                        vb.innerHTML += vettArchivio[i].Titolo + " " + vettArchivio[i].Piattaforma + " " + vettArchivio[i].Anno_Uscita + " " + vettArchivio[i].Genere + " " + vettArchivio[i].Completato + " " +  vettArchivio[i].Ore_Giocate + "<br />";
+                    }
+                }
+            }
+
+            
+            async function cercaPiattaforma(){
+                const promise = await fetch("videogiochi.json");
+                const vettArchivio = await promise.json();
+                // const provincia = document.getElementById('ricercaProvincia');
+                let piattaforma = document.getElementById("ricercaPiattaforma").value.toUpperCase().trim();
+                let vb = document.querySelector("#viewBox");
+
+                if (!piattaforma) {
+                    alert("Seleziona prima una piattaforma");
+                    return;
+                }
+
+                vb.innerHTML = ""; 
+                
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    if(vettArchivio[i].Piattaforma.toUpperCase() == piattaforma){
+                        vb.innerHTML += vettArchivio[i].Titolo + " " + vettArchivio[i].Piattaforma + " " + vettArchivio[i].Anno_Uscita + " " + vettArchivio[i].Genere + " " + vettArchivio[i].Completato + " " +  vettArchivio[i].Ore_Giocate + "<br />";
+                    }
+                }
+            }
+
+            async function cercaAnno(){
+                const promise = await fetch("videogiochi.json");
+                const vettArchivio = await promise.json();
+                // event.preventDefault(); // Blocca il ricaricamento della pagina
+                let anno = document.getElementById("ricercaAnno").value.toUpperCase().trim();
+                let vb = document.querySelector("#viewBox");
+
+
+                vb.innerHTML = ""; 
+                
+
+                for(let i=0; i < vettArchivio.length; i++){
+                    let anno_gioco = vettArchivio.Anno_Uscita;
+                    if(anno_gioco >= anno){
+                        vb.innerHTML += vettArchivio[i].Titolo + " " + vettArchivio[i].Piattaforma + " " + vettArchivio[i].Anno_Uscita + " " + vettArchivio[i].Genere + " " + vettArchivio[i].Completato + " " +  vettArchivio[i].Ore_Giocate + "<br />";
+                    }
+                }
+            }
+            
+
+
+
+            let btnCaricaArchivio = document.querySelector("#btnCaricaArchivio");
+            btnCaricaArchivio.addEventListener('click', visualizzazioneArchivio);
+
+            let btnCaricaCompletato = document.querySelector("#btnCaricaCompletato");
+            btnCaricaCompletato.addEventListener('click', caricaCompletato);
+
+            let btnCaricaGenere = document.querySelector("#btnCaricaGenere");
+            btnCaricaGenere.addEventListener('click', cercaGenere);
+
+            let btnCaricaPiattaforma = document.querySelector("#btnCaricaPiattaforma");
+            btnCaricaPiattaforma.addEventListener('click', cercaPiattaforma);
+
+            let btnCaricaAnno = document.querySelector("#btnCaricaAnno");
+            btnCaricaAnno.addEventListener('click', cercaAnno);
+/*
+            let btnCaricaAnno = document.querySelector("#btnCaricaAnno");
+            btnCaricaAnno.addEventListener('click', cercaAnno); */
+        </script>
+    </body>
+</html>
