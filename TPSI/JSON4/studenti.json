@@ -1,0 +1,44 @@
+[
+  {
+    "Nome": "Marco",
+    "Cognome": "Vincenzi",
+    "Anno": 2007,
+    "Sesso": "M",
+    "Iscritto": true
+  },
+  {
+    "Nome": "Vittorio",
+    "Cognome": "Rossi",
+    "Anno": 2009,
+    "Sesso": "M",
+    "Iscritto": false
+  },
+  {
+    "Nome": "Lucia",
+    "Cognome": "Vincenzi",
+    "Anno": 2008,
+    "Sesso": "F",
+    "Iscritto": true
+  },
+  {
+    "Nome": "Simone",
+    "Cognome": "Corradi",
+    "Anno": 2001,
+    "Sesso": "M",
+    "Iscritto": true
+  },
+  {
+    "Nome": "Anna",
+    "Cognome": "Rossi",
+    "Anno": 2003,
+    "Sesso": "F",
+    "Iscritto": false
+  },
+  {
+    "Nome": "Luca",
+    "Cognome": "Belli",
+    "Anno": 2010,
+    "Sesso": "M",
+    "Iscritto": false
+  }
+]
